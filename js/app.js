@@ -195,9 +195,6 @@ moreInfo.addEventListener("click", function() { // when button is clicked, add t
         discription.appendChild( document.createTextNode("Discription: "+newlocation[i].discription) );
         info.appendChild(discription);
 
-        var discription = document.createElement('h3');
-        discription.appendChild( document.createTextNode("Discription: "+newlocation[i].discription) );
-        info.appendChild(discription);
 
         var req = document.createElement('h3');
         req.appendChild( document.createTextNode("Requirement: "+newlocation[i].req) );
