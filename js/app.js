@@ -2,7 +2,7 @@
 
 
 
-var newlocation=[];
+var newlocation=[];// this array to save the proparty and vlaue
 function TimeTrip(LocationName,Grade,period="",date="TBD",type="TBD",distance="Not difined yet.",time="TBD",startingTime="TBD", size="Any", discription="Not Available", req="No requirements") {
   this.LocationName=LocationName;
   this.Grade = Grade;
@@ -20,7 +20,7 @@ function TimeTrip(LocationName,Grade,period="",date="TBD",type="TBD",distance="N
   return this;
 }
 
-function save_locations(){
+function save_locations(){//this function creat the location and save them in local storage.
   new TimeTrip('Dana Hiking Trails From Rummana Campsite:Campsite Trail','Easy','up to 2 hours',"(March 15 – October 31)","guided or self-guided","1.5 km","1 hour","8:00 a.m. – 3:00 p.m. from the Rummana Campsite","4-20 people","This circular walk around the Rummana campsite is a great place to see birds, especially during migration seasons. The scenic viewpoints along the trail offer picturesque views of the Dana Mountains");
   new TimeTrip('Dana Hiking Trails From Rummana Campsite:The Cave Trail','Easy','up to 2 hours',"(March 15 – October 31)","guided or self-guided","1.5 km","1.5 hours","8:00 a.m. – 3:00 p.m. from the Rummana Campsite","4-20 people","Starting at the Rummana campsite, this trail passes by the unusual sandstone formations of Shaq al Kalb (Wadi of the Dog) to a group of small caves, believed to have been a religious retreat or hermitage.","No fear of heights");
   new TimeTrip('Dana Hiking Trails From Rummana Campsite: Rummana Mountain Trail','Moderate','up to 2 hours','(March 15 – October 31)','guided or self-guided','2.5 km','2 hours','8:00 a.m. – 3:00 p.m. from the Rummana Campsite', '4-20 people','This circular trail starts from the campsite and ascends to the top to Rummana Mountain, where the views of Wadi Araba are breathtaking. Highlights on the trail include magnificent sandstone and limestone formations, birds of prey, and beautiful views of the nature reserve.');
@@ -53,11 +53,11 @@ function save_locations(){
   new TimeTrip('RIFT VALLEY MOUNTAIN TREK:Wadi Dana Trail','Difficult','More Than One Day','(Year-round, except during Ramadan)','guided only',' 14km','5 -7 hrs','6:30 a.m.','10-20 people','Starting from the luscious highlands before winding through the rocky slopes and plains, the serenity is interrupted only by the sound of birdsong, as the scents of flowers permeate the crisp, cool air of the valley. After your 14km hike through this unique landscape, you will relax and spend the night at the dreamy, candle-lit Eco-lodge.');
   new TimeTrip('RIFT VALLEY MOUNTAIN TREK:Wadi Al Nakheel Trail','Moderate','More Than One Day','(Year-round, except during Ramadan)','guided only','18 km',' 7 - 8 hrs','6:30 a.m.','10-20 people','This trail offers an aquatic hike through small pools of water,especially refreshing during spring time. With different stone formations, this trail is reminiscent of the famous Siq of Petra “Petra canyon”. After 3 - 4 hours, you will take a relaxing tea break,whilst learning more about the spectacular surroundings from your local guide. Upon reaching the green valleys of Albustaan, you will meet your Bedouin hosts and sleep in a Bedouin tent.');
   new TimeTrip('RIFT VALLEY MOUNTAIN TREK:Al Matal Trail','Easy','More Than One Day','(Year-round, except during Ramadan)','guided only','14 km',' 5 - 6 hrs','6:30 a.m.','10-20 people','This easier hike starts from the old village of Sihan, which was inhabited by Shobaki locals up until the nineteenth century. Only ruins of the old stone houses now stand witness to a once lively community in Sihan. A high viewpoint is easily reached, rewarding you with magnificent views of Shobak’s proposed protected area. Following the Al Hazeem road you reach the Ras Al Faid area, where you spend your last night in Shobak before heading towards little Petra.');
-  var productstring = JSON.stringify(newlocation);
+  var productstring = JSON.stringify(newlocation);//to transfer the object to json formate (string)
   localStorage.setItem('locations', productstring);
 }
 
-function load_locations() {
+function load_locations() {//to search that locations are stored in the storage, if not, call save function to generate and save locations 
   var productstring= localStorage.getItem('locations');
   if(productstring){
     newlocation = JSON.parse(productstring);
@@ -70,12 +70,12 @@ function load_locations() {
 load_locations();
 
 function initiateList(){ // //Add all locations to the select options once the page is loaded
-  var container = document.getElementById('LocationName');
-  if(container !== null){
+  var container = document.getElementById('LocationName');// locationName that in the form to creat all options
+  if(container !== null){//If the select is not on page (in case javascript is shared between pages)
     if(newlocation.length != 0 ){
-      container.removeChild( container.options[0] );
+      container.removeChild( container.options[0] );// remove the defult (no avaliable place)
     }
-    for(var i = 0; i < newlocation.length; i++){
+    for(var i = 0; i < newlocation.length; i++){//creat option fo select list
       var opt = document.createElement('option');
       opt.appendChild( document.createTextNode(newlocation[i].LocationName) );
       opt.value = newlocation[i].LocationName; 
@@ -94,7 +94,7 @@ TripTime.addEventListener("change", function() { // modify the select options de
   var container = document.getElementById('LocationName');
   if(container !== null){
 
-    container.innerHTML = "";
+    container.innerHTML = "";//remove all the option before and when we change the time of trip the select liste change as we choose in time of trip
 
     for(var i = 0; i < newlocation.length; i++){ // iterate over all locations
       // check if the filters match the location, and display it
