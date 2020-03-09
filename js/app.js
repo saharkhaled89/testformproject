@@ -206,7 +206,7 @@ moreInfo.addEventListener("click", function () { // when button is clicked, add 
       for (var i = 0; i < newlocation.length; i++) {
         if (container.value == newlocation[i].LocationName && container_route.value == newlocation[i].route) {
 
-          var name = document.createElement('h1');
+          var name = document.createElement('h2');
           name.appendChild(document.createTextNode(newlocation[i].LocationName+" "+ newlocation[i].route));
           info.appendChild(name);
 
@@ -270,7 +270,7 @@ moreInfo.addEventListener("click", function () { // when button is clicked, add 
     }
     else {
       var info = document.getElementById('info');
-      var name = document.createElement('h1');
+      var name = document.createElement('h2');
       name.appendChild(document.createTextNode("Please select a valid location."));
       info.appendChild(name);
     }
@@ -280,3 +280,25 @@ moreInfo.addEventListener("click", function () { // when button is clicked, add 
   }
 });
 
+
+
+
+
+// Wrap every letter in a span
+var textWrapper = document.querySelector('.ml3');
+textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+anime.timeline({loop: true})
+  .add({
+    targets: '.ml3 .letter',
+    opacity: [0,1],
+    easing: "easeInOutQuad",
+    duration: 2250,
+    delay: (el, i) => 150 * (i+1)
+  }).add({
+    targets: '.ml3',
+    opacity: 0,
+    duration: 1000,
+    easing: "easeOutExpo",
+    delay: 1000
+  });
